@@ -2,6 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
+    host: 'http://wo.thingit.nl',
     modulePrefix: 'workouts',
     environment: environment,
     baseURL: '/',
@@ -16,15 +17,24 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
+      contentSecurityPolicy: {
+          'default-src': "'none'",
+          'script-src': "'self' wo.thingit.nl",
+          'font-src': "'self'",
+          'connect-src': "'self' wo.thingit.nl",
+          'img-src': "'self'",
+          'style-src': "'self' 'unsafe-inline'",
+          'frame-src': "'none'"
+      }
   };
 
   if (environment === 'development') {
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
+    ENV.APP.LOG_RESOLVER = true;
+    ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
 
   if (environment === 'test') {
